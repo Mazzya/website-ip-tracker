@@ -41,6 +41,4 @@ $ tracker.py -d www.google.com
 You can also save the results in a text file with the argument ```-s``` or ```--save```.
 
 The file is saved in the same directory as the script and has the following format :
-```
-Domain : IP
-```
+> Domain : IP
