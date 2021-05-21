@@ -35,9 +35,10 @@ def verify_internet() -> bool:
             connected = True
         else:
             print("Oops, check your internet connection")
-        return connected
     except:
         print("Oops, check your internet connection")
+    finally:
+        return connected
 
 def track_website_ip(domain, save_file=False):
     """Tracks the IP address of the website passed as argument"""
@@ -48,7 +49,7 @@ def track_website_ip(domain, save_file=False):
             print(f"""
             Domain : {domain}
             IP : {ip}""")
-            if save_file is True:
+            if save_file:
                 save_results(domain, ip)
     except s.gaierror:
         print("Domain failed, try again please")
