@@ -1,3 +1,4 @@
+# This module is responsible for generating the report in PDF format
 from reportlab.pdfgen import canvas
 
 
@@ -18,6 +19,7 @@ def header(filename=None, font=None, size=None, title=None, domain=None, ip=None
 
 
 def body(pdf, font, size, domain, ip):
+    """This function is responsible for integrating a body with the results in the PDF report"""
     domain_obj = pdf.beginText(40, 680)
     domain_obj.setFont(font, size)
     domain_obj.textLine(f"Domain: {domain}")
