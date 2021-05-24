@@ -43,6 +43,7 @@ $ tracker.py -d www.google.com
             IP : 142.250.74.228
 ```
 You can also save the results in a text file with the argument ```-s``` or ```--save```.
+If you want generate a PDF report with the results, you can use ```--pdf```
 
-The file is saved in the same directory as the script and has the following format :
+The file and PDF report is saved in the same directory as the script and has the following format :
 > Domain : IP
