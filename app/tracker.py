@@ -2,8 +2,9 @@ import socket as s
 import requests
 import argparse
 from io import open
+from pdf.pdf import header
 
-VERSION = '1.0.0'
+VERSION = '1.1.0'
 BANNER = f"""                           
          @@@@@@@@@@@@@@@@@@@                      
       @@@@@@@@@@@@@@@@@@@@@@@@@                   
@@ -26,6 +27,7 @@ BANNER = f"""
                                          (@@@@@@  
 """
 
+
 def verify_internet() -> bool:
     """Check if there is an internet connection"""
     try:
@@ -40,19 +42,25 @@ def verify_internet() -> bool:
     finally:
         return connected
 
-def track_website_ip(domain, save_file=False):
+
+def track_website_ip(domain, save_file=False, pdf_report=False):
     """Tracks the IP address of the website passed as argument"""
     try:
         print(BANNER)
-        if (verify_internet()):
+        if verify_internet():
             ip = s.gethostbyname(domain)
             print(f"""
             Domain : {domain}
             IP : {ip}""")
             if save_file:
                 save_results(domain, ip)
+            # If user wants generate a PDF report of results
+            if pdf_report:
+                header("results", "Helvetica", 25, "Website IP Tracker", domain, ip)
+
     except s.gaierror:
         print("Domain failed, try again please")
+
 
 def save_results(domain, ip):
     """Save results in a .txt file"""
@@ -64,10 +72,14 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Find the IP address of any website")
     parser.add_argument('-d', '--domain', metavar='', type=str, required=True, help="Domain to track")
     parser.add_argument('-s', '--save', action='store_true', help="Save results in a file")
+    parser.add_argument('--pdf', action='store_true', help="Generate a PDF report")
     args = parser.parse_args()
 
-    if args.domain and args.save:
+    if args.domain and args.save and args.pdf:
+        track_website_ip(args.domain, save_file=True, pdf_report=True)
+    elif args.domain and args.save:
         track_website_ip(args.domain, save_file=True)
-
+    elif args.domain and args.pdf:
+        track_website_ip(args.domain, pdf_report=True)
     elif args.domain:
         track_website_ip(args.domain)
