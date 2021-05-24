@@ -6,12 +6,13 @@ WIT ( Website IP Tracker ) is a script that allows you to quickly track the IP a
 Visit [Change Log](https://github.com/Mazzya/website-ip-tracker/blob/main/CHANGELOG.md)
 ## Usage
 ```
-usage: tracker.py [-h] [-d] [-s]
+usage: tracker.py [-h] [-d] [-s] [--pdf]
 
 optional arguments:
     -h, --help          show this help message and exit
     -d, --domain        domain to track
     -s, --save          save results in a file
+    --pdf               generate a PDF report
 ```
 ## Example
 ```
