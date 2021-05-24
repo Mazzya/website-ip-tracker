@@ -52,6 +52,7 @@ def track_website_ip(domain, save_file=False, pdf_report=False):
             print(f"""
             Domain : {domain}
             IP : {ip}""")
+            # If user wants generate a .txt file to save results
             if save_file:
                 save_results(domain, ip)
             # If user wants generate a PDF report of results
