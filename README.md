@@ -1,5 +1,5 @@
 # Website IP Tracker
-![GitHub](https://img.shields.io/github/license/mazzya/website-ip-tracker) ![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg?) ![GitHub release (latest by date)](https://img.shields.io/github/v/release/mazzya/website-ip-tracker)
+![GitHub](https://img.shields.io/github/license/mazzya/website-ip-tracker) ![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg?) ![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/mazzya/website-ip-tracker)
 ### Find the IP address of any website.
 WIT ( Website IP Tracker ) is a script that allows you to quickly track the IP addresses of websites.
 ## Clone the repository
