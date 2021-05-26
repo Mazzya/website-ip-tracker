@@ -2,9 +2,9 @@ import socket as s
 import requests
 import argparse
 from io import open
-from pdf.pdf import header
+from pdf.pdf import PdfReport
 
-VERSION = '1.1.0'
+VERSION = '1.1.1'
 BANNER = f"""                           
          @@@@@@@@@@@@@@@@@@@                      
       @@@@@@@@@@@@@@@@@@@@@@@@@                   
@@ -30,8 +30,8 @@ BANNER = f"""
 
 def verify_internet() -> bool:
     """Check if there is an internet connection"""
+    connected = False
     try:
-        connected = False
         r = requests.get("https://google.com")
         if r.status_code == 200:
             connected = True
@@ -57,7 +57,7 @@ def track_website_ip(domain, save_file=False, pdf_report=False):
                 save_results(domain, ip)
             # If user wants generate a PDF report of results
             if pdf_report:
-                header("results", "Helvetica", 25, "Website IP Tracker", domain, ip)
+                PdfReport("results", "Helvetica", 25, "Website IP Tracker", domain, ip)
 
     except s.gaierror:
         print("Domain failed, try again please")
