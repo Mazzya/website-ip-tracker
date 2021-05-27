@@ -4,6 +4,11 @@
 WIT ( Website IP Tracker ) is a script that allows you to quickly track the IP addresses of websites.
 
 Visit [Change Log](https://github.com/Mazzya/website-ip-tracker/blob/main/CHANGELOG.md)
+## Requirements
+```
+Python 3
+pip install reportlab
+```
 ## Clone the repository
 ```
 $ git clone https://github.com/Mazzya/website-ip-tracker.git
