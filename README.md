@@ -13,6 +13,8 @@ pip install reportlab
 ```
 $ git clone https://github.com/Mazzya/website-ip-tracker.git
 ```
+If you don't want to clone it, you can download it directly from [here](https://github.com/Mazzya/website-ip-tracker/releases).
+
 Once you have the project locally, you need to go to the application folder and run ```tracker.py```
 ## Usage
 ```
