@@ -4,7 +4,7 @@ import argparse
 from io import open
 from pdf.pdf import PdfReport
 
-VERSION = '1.1.1'
+VERSION = '1.2.0'
 BANNER = f"""                           
          @@@@@@@@@@@@@@@@@@@                      
       @@@@@@@@@@@@@@@@@@@@@@@@@                   
@@ -71,9 +71,10 @@ def save_results(domain, ip):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Find the IP address of any website")
-    parser.add_argument('-d', '--domain', metavar='', type=str, required=True, help="Domain to track")
+    parser.add_argument('-d', '--domain', metavar='', type=str, required=False, help="Domain to track")
     parser.add_argument('-s', '--save', action='store_true', help="Save results in a file")
     parser.add_argument('--pdf', action='store_true', help="Generate a PDF report")
+    parser.add_argument('--version', action='store_true', help="Current version")
     args = parser.parse_args()
 
     if args.domain and args.save and args.pdf:
@@ -84,3 +85,7 @@ if __name__ == "__main__":
         track_website_ip(args.domain, pdf_report=True)
     elif args.domain:
         track_website_ip(args.domain)
+    elif args.version:
+        print(f"Website IP Tracker {VERSION}")
+    else:
+        print("You need to write at least one argument, run 'tracker.py --help' to see what arguments are available.")

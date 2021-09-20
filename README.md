@@ -25,6 +25,7 @@ optional arguments:
     -d, --domain        domain to track
     -s, --save          save results in a file
     --pdf               generate a pdf report
+    --version           check current version
 ```
 ## Example
 ```
