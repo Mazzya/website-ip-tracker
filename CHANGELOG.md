@@ -2,6 +2,7 @@
 ## v1.2.0 - Sep 19, 2021
 **Added:**
 * The '--version' argument to view the program version
+* A help message when no argument is given
 
 **Changed:**
 * It is now possible to use the program without setting a domain, for example to check the program version.
