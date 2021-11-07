@@ -59,3 +59,6 @@ You can also save the results in a text file with the argument ```-s``` or ```--
 
 The file and PDF report is saved in the same directory as the script and has the following format :
 > Domain : IP
+
+#### Discord Server
+We have a discord server in case you have any questions or want to be informed about the project news. Do not hesitate to [join us](https://discord.gg/mZF9ywQzdg), we are waiting for you.
