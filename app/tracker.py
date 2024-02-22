@@ -1,4 +1,5 @@
 import socket as s
+import whois
 import requests
 import argparse
 from io import open
@@ -28,7 +29,7 @@ BANNER = f"""
 """
 
 
-def verify_internet() -> bool:
+def verify_domain() -> bool:
     """Check if there is an internet connection"""
     connected = False
     try:
@@ -47,17 +48,24 @@ def track_website_ip(domain, save_file=False, pdf_report=False):
     """Tracks the IP address of the website passed as argument"""
     try:
         print(BANNER)
-        if verify_internet():
+        if verify_domain():
             ip = s.gethostbyname(domain)
+            domain_info = whois.whois(domain)
+            #print(domain_info.name_servers)
             print(f"""
             Domain : {domain}
-            IP : {ip}""")
+            IP : {ip}
+            Name servers : {domain_info.name_servers}
+
+
+""")
             # If user wants generate a .txt file to save results
             if save_file:
                 save_results(domain, ip)
             # If user wants generate a PDF report of results
             if pdf_report:
-                PdfReport("results", "Helvetica", 25, "Website IP Tracker", domain, ip)
+                format_pdf_name = f"Summary - {domain}"
+                PdfReport(format_pdf_name, "Helvetica", 25, "Website IP Tracker", domain, ip)
 
     except s.gaierror:
         print("Domain failed, try again please")
@@ -70,7 +78,7 @@ def save_results(domain, ip):
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Find the IP address of any website")
+    parser = argparse.ArgumentParser(description="Find the IP address and other stuff of any website")
     parser.add_argument('-d', '--domain', metavar='', type=str, required=False, help="Domain to track")
     parser.add_argument('-s', '--save', action='store_true', help="Save results in a file")
     parser.add_argument('--pdf', action='store_true', help="Generate a PDF report")
