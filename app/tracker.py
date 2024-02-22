@@ -5,7 +5,7 @@ import argparse
 from io import open
 from pdf.pdf import PdfReport
 
-VERSION = '1.2.0'
+VERSION = '1.3.0'
 BANNER = f"""                           
          @@@@@@@@@@@@@@@@@@@                      
       @@@@@@@@@@@@@@@@@@@@@@@@@                   
@@ -21,7 +21,7 @@ BANNER = f"""
      @@@@@@@@@@%     #@@@@@@@@@@@@&@@        Developed by Mazzya       
         @@@@@@@@@@@@@@@@@@@@@ @@@@@@@@@@        Version {VERSION}       
              @@@@@@@@@@@      @@@@@@@@@@@@         github.com/mazzya     
-                                @@@@@@@@@@@@/         mazzya.tk
+                                @@@@@@@@@@@@/
                                   @@@@@@@@@@@@@   
                                     @@@@@@@@@@@@ 
                                       @@@@@@@@@@@
