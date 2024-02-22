@@ -3,7 +3,7 @@ import whois
 import requests
 import argparse
 from io import open
-from pdf.pdf import PdfReport
+from pdf_module.pdf_core import PdfReport
 
 VERSION = '1.3.0'
 BANNER = f"""                           
@@ -51,17 +51,18 @@ def track_website_ip(domain, save_file=False, pdf_report=False):
         if verify_domain():
             ip = s.gethostbyname(domain)
             domain_info = whois.whois(domain)
+            name_servers = domain_info.name_servers
+            for_name_servers = ', '.join(name_servers)
+            formatted_servers = for_name_servers.replace("'", "").replace("[", "").replace("]", "")
             #print(domain_info.name_servers)
             print(f"""
             Domain : {domain}
             IP : {ip}
-            Name servers : {domain_info.name_servers}
-
-
 """)
+            
             # If user wants generate a .txt file to save results
             if save_file:
-                save_results(domain, ip)
+                save_results(domain, ip, formatted_servers)
             # If user wants generate a PDF report of results
             if pdf_report:
                 format_pdf_name = f"Summary - {domain}"
@@ -71,10 +72,10 @@ def track_website_ip(domain, save_file=False, pdf_report=False):
         print("Domain failed, try again please")
 
 
-def save_results(domain, ip):
+def save_results(domain, ip, name_servers):
     """Save results in a .txt file"""
     with open('results.txt', 'a+') as f:
-        f.write(f"{domain} : {ip}" + '\n')
+        f.write(f"{domain} : {ip} | {name_servers}" + '\n')
 
 
 if __name__ == "__main__":

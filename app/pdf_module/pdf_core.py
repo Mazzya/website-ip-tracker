@@ -2,6 +2,7 @@
 from reportlab.pdfgen import canvas
 
 
+
 class PdfReport:
     def __init__(self, filename, font, size, title, domain, ip):
         self.header(filename, font, size, title, domain, ip)
@@ -35,5 +36,6 @@ class PdfReport:
         pdf.setFont(font, 12)
         pdf.drawCentredString(300, 60, "Developed by Mazzya : https://github.com/mazzya")
         pdf.drawCentredString(300, 40, "Project repository : https://github.com/mazzya/website-ip-tracker")
-        pdf.drawCentredString(300, 10, "Version : 1.1.1")
+        from tracker import VERSION
+        pdf.drawCentredString(300, 10, f"Version : {VERSION}")
         pdf.save()
