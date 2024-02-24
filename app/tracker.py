@@ -44,7 +44,7 @@ def verify_domain() -> bool:
         return connected
 
 
-def format(ip_list) -> str:
+def format_list(ip_list) -> str:
     formatted_list = ', '.join(ip_list).replace("'", "").replace("[", "").replace("]", "")
     return formatted_list
 
@@ -69,8 +69,8 @@ def track_website_ip(domain, save_file=False, pdf_report=False):
             #print(domain_info.name_servers)
             print(f"""
             Domain : {domain}
-            IP : {format(ip)}
-            LIST : {format(name_servers)}
+            IP : {format_list(ip)}
+            LIST : {format_list(name_servers)}
 """)
             
             # If user wants generate a .txt file to save results
@@ -82,7 +82,7 @@ def track_website_ip(domain, save_file=False, pdf_report=False):
                 PdfReport(format_pdf_name, "Helvetica", 25, "Website IP Tracker", domain, ip)
 
     except s.gaierror:
-        print("Domain failed, try again please")
+        print("It seems that the domain does not exist or is not available at the moment.")
     except s.error as e:
         print(e)
 
