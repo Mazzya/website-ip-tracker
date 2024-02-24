@@ -44,20 +44,33 @@ def verify_domain() -> bool:
         return connected
 
 
+def format(ip_list) -> str:
+    formatted_list = ', '.join(ip_list).replace("'", "").replace("[", "").replace("]", "")
+    return formatted_list
+
+def save_results(domain, ip, name_servers):
+    """Save results in a .txt file"""
+    with open('results.txt', 'a+') as f:
+        f.write(f"{domain} : {ip} | {name_servers}" + '\n')
+
+
 def track_website_ip(domain, save_file=False, pdf_report=False):
     """Tracks the IP address of the website passed as argument"""
     try:
         print(BANNER)
         if verify_domain():
-            ip = s.gethostbyname(domain)
-            domain_info = whois.whois(domain)
-            name_servers = domain_info.name_servers
-            for_name_servers = ', '.join(name_servers)
-            formatted_servers = for_name_servers.replace("'", "").replace("[", "").replace("]", "")
+            ip = s.gethostbyname_ex(domain)[2]
+            try:
+                domain_info = whois.whois(domain)
+                name_servers = domain_info.name_servers
+                #serva = format(name_servers)
+            except TypeError:
+                formatted_servers = ''
             #print(domain_info.name_servers)
             print(f"""
             Domain : {domain}
-            IP : {ip}
+            IP : {format(ip)}
+            LIST : {format(name_servers)}
 """)
             
             # If user wants generate a .txt file to save results
@@ -70,12 +83,8 @@ def track_website_ip(domain, save_file=False, pdf_report=False):
 
     except s.gaierror:
         print("Domain failed, try again please")
-
-
-def save_results(domain, ip, name_servers):
-    """Save results in a .txt file"""
-    with open('results.txt', 'a+') as f:
-        f.write(f"{domain} : {ip} | {name_servers}" + '\n')
+    except s.error as e:
+        print(e)
 
 
 if __name__ == "__main__":
